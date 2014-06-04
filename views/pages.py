@@ -16,11 +16,11 @@ class TestView(webapp2.RequestHandler):
     def get(self):
         html = '''
         <head>
-<style type="text/css">
-      .breakpoints {width: .8em;}
-      .breakpoint { color: #822; }
-      .CodeMirror {border: 1px solid #aaa;}
-    </style>
+            <style type="text/css">
+              .breakpoints {width: .8em;}
+              .breakpoint { color: #822; }
+              .CodeMirror {border: 1px solid #aaa;}
+            </style>
             <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.2.0/codemirror.js"></script>
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.2.0/codemirror.css">
             <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.2.0/mode/python/python.js"></script>
