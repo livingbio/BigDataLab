@@ -1,8 +1,6 @@
 from google.appengine.ext import ndb
-import mapreduce
-from mapreduce import base_handler
-from mapreduce.lib.pipeline import common
-from mapreduce.lib import pipeline
+import pipeline
+from pipeline import common
 
 class _GP_code(ndb.Model):
     name = ndb.StringProperty(indexed=False)
@@ -11,7 +9,7 @@ class _GP_code(ndb.Model):
     eval_code = ndb.TextProperty()
 
 
-class GenericPipeline(base_handler.PipelineBase):
+class GenericPipeline(pipeline.Pipeline):
     def __unicode__(self):
         return self.name
 

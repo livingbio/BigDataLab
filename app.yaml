@@ -9,13 +9,12 @@ builtins:
 - deferred: on
 - appstats: on
 
-
-includes:
-- lib/mapreduce/include.yaml
-
 handlers:
 - url: /_ah/pipeline(/.*)?
   script: pipeline.handlers._APP
+
+- url: /test/.*
+  script: demo.app
 
 - url: /.*
   script: index.app
