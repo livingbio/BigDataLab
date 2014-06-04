@@ -25,6 +25,7 @@ class GenericPipeline(pipeline.Pipeline):
         }
     def run(self, _id, **kwargs):
         p = _GP_code.get_by_id(_id)
+        assert p
 
         exec(p.exec_code, self.env, kwargs)
         f = eval(p.eval_code, self.env, kwargs)

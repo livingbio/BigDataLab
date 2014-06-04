@@ -3,7 +3,7 @@ version: 1
 runtime: python27
 api_version: 1
 threadsafe: true
-module: BigDataLab
+module: bigdatalab
 
 builtins:
 - remote_api: on
@@ -20,7 +20,7 @@ handlers:
 - url: /.*
   script: index.app
 
+instance_class: B8
 basic_scaling:
-  instance_class: B8
-  max_instances: 255
+  max_instances: 30
   idle_timeout: 15m
