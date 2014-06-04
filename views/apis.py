@@ -75,6 +75,7 @@ class PipelineApi(ApiHandler):
         name = self.request.POST.get('name')
     
         try:
+            assert id, 'no id'
             code = _GP_code.get_by_id(_id)
         except Exception as e:
             code = _GP_code()
