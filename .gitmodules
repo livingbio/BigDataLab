@@ -1,3 +1,6 @@
 [submodule "lib/pipeline"]
 	path = lib/pipeline
 	url = https://github.com/Tagtoo/pipeline
+[submodule "lib/mapreduce"]
+	path = lib/mapreduce
+	url = https://github.com/Tagtoo/mapreduce
