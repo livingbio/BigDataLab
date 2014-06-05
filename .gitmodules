@@ -4,3 +4,6 @@
 [submodule "lib/mapreduce"]
 	path = lib/mapreduce
 	url = https://github.com/Tagtoo/mapreduce
+[submodule "lib/endpoints-proto-datastore"]
+	path = lib/endpoints-proto-datastore
+	url = https://github.com/GoogleCloudPlatform/endpoints-proto-datastore.git

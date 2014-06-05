@@ -25,8 +25,8 @@ class TestNormal(webapp2.RequestHandler):
         ))
 
 
-from models import _GP_code, GenericPipeline
-_GP_code(
+from models import GPCode, GenericPipeline
+GPCode(
     id="TestAchievingParallelism",
     name="TestAchievingParallelism",
     exec_code="""
@@ -42,7 +42,7 @@ run()
 """
 ).put()
 
-_GP_code(
+GPCode(
     id="TestParallelism",
     name="TestParallelism",
     exec_code="""

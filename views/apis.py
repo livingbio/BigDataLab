@@ -1,14 +1,13 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2014 george 
+# Copyright © 2014 george
 #
 # Distributed under terms of the MIT license.
 
 import webapp2
-from models import _GP_code, GenericPipeline
+from generic_pipeline.models import GPCode
 from mapreduce import base_handler
-
 import re
 
 class PipelineTrigger(webapp2.RequestHandler):
@@ -31,7 +30,7 @@ class ApiHandler(webapp2.RequestHandler):
 
         if self.request.method == 'GET' and self.request.GET.get('callback', False):
             result = "{}({})".format(self.request.GET.get('callback'), result)
-            content_type = 'application/javascript'    
+            content_type = 'application/javascript'
         else:
             content_type = 'application/json'
 
@@ -52,20 +51,35 @@ class ApiHandler(webapp2.RequestHandler):
 
 
 class PipelineApi(ApiHandler):
-    def get(self, _id):
+
+    def list(self):
+        rs = GPCode.query()
+        result = [{
+            "id": k.key.id(),
+            "name": k.name,
+            "exec_code": k.exec_code,
+            "eval_code": k.eval_code
+        } for k in rs]
+
+        self.output(result)
+
+    def get(self, _id=None):
+        if not _id:
+            return self.list()
+
         try:
             assert _id, 'id is not define'
-            code = _GP_code.get_by_id(int(_id))
-            
+            code = GPCode.get_by_id(int(_id))
+
         except Exception as e:
             raise Exception(' get pipeline code error')
 
         result = {
-                'exec_code' : code.exec_code,
-                'eval_code' : code.eval_code,
-                'name' : code.name
-            }
-        
+            'exec_code' : code.exec_code,
+            'eval_code' : code.eval_code,
+            'name' : code.name
+        }
+
         self.output(result)
 
 
@@ -73,12 +87,12 @@ class PipelineApi(ApiHandler):
         exec_code = self.request.POST.get('exec_code')
         eval_code = self.request.POST.get('eval_code')
         name = self.request.POST.get('name')
-    
+
         try:
             assert id, 'no id'
-            code = _GP_code.get_by_id(_id)
+            code = GPCode.get_by_id(_id)
         except Exception as e:
-            code = _GP_code()
+            code = GPCode()
 
         code.exec_code = exec_code
         code.eval_code = eval_code
