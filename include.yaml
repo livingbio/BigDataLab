@@ -1,0 +1,16 @@
+builtins:
+- remote_api: on
+- deferred: on
+- appstats: on
+
+handlers:
+- url: /_ah/pipeline(/.*)?
+  script: pipeline.handlers._APP
+
+- url: /_ah/bigdatalab(/.*)?
+  scripts: bigdatalab.handlers.app
+
+# admin_console:
+#   pages:
+#   - name: Big Data Lab
+#     url: /shell
