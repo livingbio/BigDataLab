@@ -2,6 +2,7 @@ from google.appengine.ext import ndb
 from endpoints_proto_datastore.ndb import EndpointsModel
 
 class GPCode(EndpointsModel):
+    _message_fields_schema = ('id', 'name', 'exec_code', 'eval_code')
     name = ndb.StringProperty(indexed=False)
 
     exec_code = ndb.TextProperty()
