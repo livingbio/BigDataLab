@@ -6,6 +6,12 @@
 
 {% block head %}
     <script src="/static/index.js"></script>
+
+<style type="text/css">
+.breakpoints {width: .8em;}
+.breakpoint { color: #822; }
+.CodeMirror {border: 1px solid #aaa;}
+</style>
 {% endblock %}
 
 
@@ -14,19 +20,17 @@
     <script src="//apis.google.com/js/client.js?onload=init"></script>
     {% raw %}
     <div class="row" ng-controller="CodeController" id="code">
-        <div class="col-md-4" ng-model="items">
+        <div class="col-md-2" ng-model="items">
             <ul ng-repeat= "item in items">
                 <li ng-click="get(item.id)"> {{ item.name }} </li>
             </ul>
-            
-
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
             <h2>name:</h2> <input ng-model="name">
             <h2>exec_code:</h2>
-            <textarea  style="width:100%; height:90%;" ng-model="exec_code"></textarea>
+            <textarea  style="width:100%; height:90%;" id="exec_code"></textarea>
             <h2>eval_code:</h2>
-            <textarea  style="width:100%; height:90%;" ng-model="eval_code"></textarea>
+            <textarea  style="width:100%; height:90%;" id="eval_code"></textarea>
             <BUTTON name="btn" ng_click="send()">send</BUTTON>
             <BUTTON name="btn" ng_click="new()">new</BUTTON>
         </div>
