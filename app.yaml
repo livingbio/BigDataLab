@@ -10,9 +10,22 @@ builtins:
 - deferred: on
 - appstats: on
 
+libraries:
+- name: endpoints
+  version: "latest"
+- name: jinja2
+  version: "latest"
+
 handlers:
 - url: /_ah/pipeline(/.*)?
   script: pipeline.handlers._APP
+
+- url: /_ah/spi/.*
+  script: apis.app
+
+- url: /index\.html
+  static_files: media/index.html
+  upload: media/index.html
 
 - url: /test/.*
   script: demo.app
@@ -20,7 +33,7 @@ handlers:
 - url: /.*
   script: index.app
 
-instance_class: B8
+instance_class: B1
 basic_scaling:
-  max_instances: 30
+  max_instances: 20
   idle_timeout: 15m
