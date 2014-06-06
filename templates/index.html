@@ -16,7 +16,7 @@
 </div>
 <script type="text/javascript">
 function init() {
-    var ROOT = 'http://localhost:8080/_ah/api';
+    var ROOT = '/_ah/api';
     gapi.client.load('bigdatalab', 'v1', function() {
         gapi.client.bigdatalab.gpcode.list({
         }).execute(function(resp) {
