@@ -1,13 +1,16 @@
 import endpoints
 from protorpc import remote
 
+# TODO: need to refine method name
+# TODO: allow user to override/insert method
+
 class EndpointRestBuilder(object):
     def __init__(self, cls):
         self.cls = cls
 
     @property
     def name(self):
-        return self.cls.__name__
+        return self.cls.__name__.lower()
 
     def build_model_insert(self, name, doc):
         def func(self, model):
@@ -91,11 +94,11 @@ class EndpointRestBuilder(object):
                 name,
                 (remote.Service, ),
                 {
-                    "%sInsert" % self.name: self.gen_model_insert(),
-                    "%sList" % self.name: self.gen_model_list(),
-                    "%sGet" % self.name: self.gen_model_get(),
-                    "%sUpdate"% self.name: self.gen_model_update(),
-                    "%sDelete"%self.name: self.gen_model_delete()
+                    "%s_insert" % self.name: self.gen_model_insert(),
+                    "%s_list" % self.name: self.gen_model_list(),
+                    "%s_get" % self.name: self.gen_model_get(),
+                    "%s_update"% self.name: self.gen_model_update(),
+                    "%s_delete"%self.name: self.gen_model_delete()
                 }
             )
         )

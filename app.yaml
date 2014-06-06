@@ -13,6 +13,8 @@ builtins:
 libraries:
 - name: endpoints
   version: "latest"
+- name: jinja2
+  version: "latest"
 
 handlers:
 - url: /_ah/pipeline(/.*)?

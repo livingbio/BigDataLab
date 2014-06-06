@@ -3,4 +3,4 @@ from .models import *
 from protorpc import remote
 from lib.endpoints_restful import *
 
-MyApi = EndpointRestBuilder(GPCode).build(name="MyApi", version="v1", description="My Little Api")
+BigDataLab = EndpointRestBuilder(GPCode).build(name="BigDataLab", version="v1", description="My Little Api")
