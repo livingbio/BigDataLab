@@ -4,20 +4,23 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.2.0/codemirror.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.2.0/codemirror.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.2.0/mode/python/python.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <!--angularjs-->
 <!--angularjs should also place to the end of body http://stackoverflow.com/questions/15538125/angularjs-in-head-vs-body-->
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+<script src="//apis.google.com/js/client.js?onload=init"></script>
 <title>{% block title %}{% endblock %}</title>
 {% block head %}
 {% endblock %}
 </head>
-<body>
+<body ng-app>
 {% block body %}
 {% endblock %}
 
 <!--endpoint-->
 <!--endpoint js should place need the end of body-->
-<script src="//apis.google.com/js/client.js?onload=init"></script>
 </body>
 </html>
