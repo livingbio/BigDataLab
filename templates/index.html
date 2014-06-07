@@ -22,8 +22,8 @@
     <div class="row" ng-controller="CodeController" id="code">
         <div class="col-md-2 row" ng-model="items">
             <div style="height:10%"></div>
-            <ul class="list-group">
-                <li class="list-group-item" ng-repeat= "item in items" ng-click="get(item)" ng-class="{active: item.id === id}"> {{ item.name }} </li>
+            <ul class="list-group col-md-offset-2 col-md-10 row" text-align="center">
+                <li class="list-group-item row" ng-repeat= "item in items" ng-click="get(item)" ng-class="{active: item.id === id}">{{ item.name }}</li>
             </ul>
         </div>
         <div class="col-md-10 row">
