@@ -5,20 +5,31 @@
  * Distributed under terms of the MIT license.
  */
 
+var app = angular.module('app', ['ngResource']);
+
+app.factory('Notes', ['$resource', function($resource) {
+return $resource('/notes/:id', null,
+   {
+       'update': { method:'PUT' }
+   });
+}]);
+
 
 
 function CodeController($scope){
     $scope.items = [];
     $scope.refresh = function(){
-        bigdatalab.gpcode.list({}).execute(function(data){
-            // http://stackoverflow.com/questions/20599877/angularjs-ngrepeat-update-model
-            $scope.items = data['items'];
-            $scope.$apply();
-            console.log('refreshed')
-        })
+        setTimeout(
+            bigdatalab.gpcode.list({}).execute(function(data){
+                // http://stackoverflow.com/questions/20599877/angularjs-ngrepeat-update-model
+                $scope.items = data['items'];
+                $scope.$apply();
+                console.log('refreshed')
+            })
+        , 500)
     }
-    $scope.get = function(code_id){
-        bigdatalab.gpcode.get({"id": code_id}).execute(function(data){
+    $scope.get = function(item){
+        bigdatalab.gpcode.get({"id": item.id}).execute(function(data){
             var exec_code = $("#exec_code").data("code");
             var eval_code = $("#eval_code").data("code");
             exec_code.setValue(data['exec_code']);
@@ -46,16 +57,33 @@ function CodeController($scope){
         }else{
             bigdatalab.gpcode.insert(data).execute(function(data){
                 $scope.id = data['id'];
-                setTimeout($scope.refresh, 1000);
+                $scope.refresh;
                 console.log('added')
             })
         }
     }
-    $scope.new = function(){
+    $scope.clean = function(){
+        var exec_code = $("#exec_code").data("code");
+        var eval_code = $("#eval_code").data("code");
         $scope.id = "";
         $scope.exec_code = "";
         $scope.eval_code = "";
         $scope.name = "";
+        exec_code.setValue("");
+        eval_code.setValue("");
+        console.log('clean')
+    }
+
+    $scope.new = function(){
+        $scope.clean()
+        console.log('new');
+    }
+    $scope.remove = function(){
+        bigdatalab.gpcode.delete({"id":$scope.id}).execute(function(data){
+            $scope.new();
+            console.log('removed')
+            $scope.refresh();
+        })
     }
 }
 

@@ -10,7 +10,7 @@
 <style type="text/css">
 .breakpoints {width: .8em;}
 .breakpoint { color: #822; }
-.CodeMirror {border: 1px solid #aaa;}
+.CodeMirror {border: 1px solid #aaa; height:60%}
 </style>
 {% endblock %}
 
@@ -20,19 +20,31 @@
     <script src="//apis.google.com/js/client.js?onload=init"></script>
     {% raw %}
     <div class="row" ng-controller="CodeController" id="code">
-        <div class="col-md-2" ng-model="items">
-            <ul ng-repeat= "item in items">
-                <li ng-click="get(item.id)"> {{ item.name }} </li>
+        <div class="col-md-2 row" ng-model="items">
+            <div style="height:10%"></div>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat= "item in items" ng-click="get(item)" ng-class="{active: item.id === id}"> {{ item.name }} </li>
             </ul>
         </div>
-        <div class="col-md-10">
-            <h2>name:</h2> <input ng-model="name">
-            <h2>exec_code:</h2>
-            <textarea  style="width:100%; height:90%;" id="exec_code"></textarea>
-            <h2>eval_code:</h2>
-            <textarea  style="width:100%; height:90%;" id="eval_code"></textarea>
-            <BUTTON name="btn" ng_click="send()">send</BUTTON>
-            <BUTTON name="btn" ng_click="new()">new</BUTTON>
+        <div class="col-md-10 row">
+            <label><h2>name:</h2></label> <input ng-model="name">
+            <div>
+                <div class="col-md-6">
+                    <h2>exec_code:</h2>
+                    <textarea  style="width:100%; height:800px;" id="exec_code"></textarea>
+                </div>
+                <div class="col-md-6">
+                    <h2>eval_code:</h2>
+                    <textarea  style="width:100%; height:800px;" id="eval_code"></textarea>
+                </div>
+            </div>
+            <div class="row" text-align="center">
+                <div class="col-md-offset-4 col-md-4 row col-centered btn-group-lg btn-group">
+                    <BUTTON class="btn btn-default col-md-4" name="btn" ng_click="new()" ng-class="{disabled: !id}">new</BUTTON>
+                    <BUTTON class="btn btn-default col-md-4" name="btn" ng_click="send()" >send</BUTTON>
+                    <BUTTON class="btn btn-default col-md-4" name="btn" ng_click="remove()" ng-class="{disabled: !id}">remove</BUTTON>
+                </div>
+            </div>
         </div>
     </div>
 
