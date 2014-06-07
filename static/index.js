@@ -11,12 +11,14 @@ function CodeController($scope){
     $scope.items = [];
     $scope.refresh = function(){
         setTimeout(
-            bigdatalab.gpcode.list({}).execute(function(data){
-                // http://stackoverflow.com/questions/20599877/angularjs-ngrepeat-update-model
-                $scope.items = data['items'];
-                $scope.$apply();
-                console.log('refreshed')
-            })
+            function(){
+                bigdatalab.gpcode.list({}).execute(function(data){
+                    // http://stackoverflow.com/questions/20599877/angularjs-ngrepeat-update-model
+                    $scope.items = data['items'];
+                    $scope.$apply();
+                    console.log('refreshed')
+                })
+            }
         , 500)
     }
     $scope.get = function(item){
@@ -42,13 +44,13 @@ function CodeController($scope){
         if($scope.id){
             data['id'] = $scope.id;
             bigdatalab.gpcode.update(data).execute(function(data){
-                setTimeout($scope.refresh, 1000);
+                $scope.refresh();
                 console.log('updated')
             })
         }else{
             bigdatalab.gpcode.insert(data).execute(function(data){
                 $scope.id = data['id'];
-                $scope.refresh;
+                $scope.refresh();
                 console.log('added')
             })
         }
