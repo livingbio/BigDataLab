@@ -7,3 +7,6 @@
 [submodule "lib/endpoints-proto-datastore"]
 	path = lib/endpoints-proto-datastore
 	url = https://github.com/GoogleCloudPlatform/endpoints-proto-datastore.git
+[submodule "lib/endpoints-proto-datastore-rest"]
+	path = lib/endpoints-proto-datastore-rest
+	url = https://github.com/Tagtoo/endpoints-proto-datastore-rest.git
