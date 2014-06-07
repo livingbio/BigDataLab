@@ -5,15 +5,6 @@
  * Distributed under terms of the MIT license.
  */
 
-var app = angular.module('app', ['ngResource']);
-
-app.factory('Notes', ['$resource', function($resource) {
-return $resource('/notes/:id', null,
-   {
-       'update': { method:'PUT' }
-   });
-}]);
-
 
 
 function CodeController($scope){
