@@ -29,7 +29,7 @@ class EndpointRestBuilder(object):
         return func
 
     def build_model_update(self, name, doc):
-        def func(self, query):
+        def func(self, model):
             model.put()
             return model
         func.__name__ = name
